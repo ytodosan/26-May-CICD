@@ -1,0 +1,22 @@
+name: Creatio CI/CD Pipeline
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  smoke-test:
+    name: Verify runner can reach Clio and see SIT
+    runs-on: [self-hosted, creatio]
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Show Clio version
+        shell: pwsh
+        run: clio --version
+
+      - name: List Clio-registered environments
+        shell: pwsh
+        run: clio show-web-app-list --format table
