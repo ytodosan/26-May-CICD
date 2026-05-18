@@ -8,7 +8,7 @@ on:
 jobs:
   smoke-test:
     name: Verify runner can reach Clio and see SIT
-    runs-on: [self-hosted, creatio]
+    runs-on: self-hosted
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
