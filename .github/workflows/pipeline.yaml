@@ -10,6 +10,14 @@ jobs:
     name: Verify runner can reach Clio and see SIT
     runs-on: self-hosted
     steps:
+      - name: Show run context
+        shell: powershell
+        run: |
+          Write-Host "Commit:  ${{ github.sha }}"
+          Write-Host "Branch:  ${{ github.ref_name }}"
+          Write-Host "Trigger: ${{ github.event_name }}"
+          Write-Host "Actor:   ${{ github.actor }}"
+
       - name: Checkout repo
         uses: actions/checkout@v4
 
