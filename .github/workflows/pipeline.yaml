@@ -6,8 +6,8 @@ on:
   workflow_dispatch:
 
 jobs:
-  smoke-test:
-    name: Verify runner can reach Clio and see SIT
+  deploy-to-sit:
+    name: Deploy workspace to SIT
     runs-on: self-hosted
     steps:
       - name: Show run context
@@ -21,10 +21,10 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v4
 
-      - name: Show Clio version
+      - name: Push workspace to SIT
         shell: powershell
-        run: clio --version
+        run: clio pushw -e SIT
 
-      - name: List Clio-registered environments
+      - name: List environments (sanity)
         shell: powershell
         run: clio show-web-app-list --format table
